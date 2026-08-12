@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="HIDDEN QUEST — C L A Y"
+    >
+
+    <title>HIDDEN QUEST — C L A Y</title>
+
+
+    <!-- Google Fonts -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         BACKGROUND
+    ========================== -->
+
+    <div class="background-grid"></div>
+
+    <div class="scanlines"></div>
+
+    <div class="ambient ambient-purple"></div>
+
+    <div class="ambient ambient-red"></div>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="container">
+
+        <section class="quest-card">
+
+
+            <!-- CORNERS -->
+
+            <div class="corner corner-top-left"></div>
+
+            <div class="corner corner-top-right"></div>
+
+            <div class="corner corner-bottom-left"></div>
+
+            <div class="corner corner-bottom-right"></div>
+
+
+
+            <!-- =========================
+                 HEADER
+            ========================== -->
+
+            <header class="quest-header">
+
+                <div class="quest-label">
+                    HIDDEN QUEST
+                </div>
+
+                <h1 class="logo">
+                    C L A Y
+                </h1>
+
+                <div class="header-line"></div>
+
+            </header>
+
+
+
+            <!-- =================================================
+                 SCREEN 1 — QUESTIONS
+            ================================================== -->
+
+            <div
+                id="questScreen"
+                class="quest-screen"
+            >
+
+
+                <!-- PROGRESS -->
+
+                <div class="progress-container">
+
+                    <div class="progress-info">
+
+                        <span>
+                            QUEST PROGRESS
+                        </span>
+
+                        <span id="questionCounter">
+                            01 / 05
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress-track">
+
+                        <div
+                            id="progressBar"
+                            class="progress-bar"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- QUESTION -->
+
+                <div class="question-container">
+
+                    <div
+                        id="questionNumber"
+                        class="question-number"
+                    >
+                        QUESTION_01
+                    </div>
+
+
+                    <h2
+                        id="questionText"
+                        class="question-text"
+                    >
+                        Loading question...
+                    </h2>
+
+                </div>
+
+
+
+                <!-- ANSWERS -->
+
+                <div
+                    id="answersContainer"
+                    class="answers-container"
+                ></div>
+
+
+
+                <!-- HINT -->
+
+                <div class="quest-hint">
+
+                    <span class="hint-icon">
+                        ◆
+                    </span>
+
+                    SELECT AN ANSWER TO CONTINUE
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SCREEN 2 — QUEST COMPLETE
+            ================================================== -->
+
+            <div
+                id="completeScreen"
+                class="complete-screen"
+            >
+
+                <div class="complete-icon">
+                    ✦
+                </div>
+
+
+                <div class="complete-label">
+                    SYSTEM MESSAGE
+                </div>
+
+
+                <h2>
+                    QUEST COMPLETE
+                </h2>
+
+
+                <p>
+                    You have discovered another
+                    piece of
+                    <strong>C L A Y</strong>.
+                </p>
+
+
+                <button
+                    id="continueButton"
+                    class="restart-button"
+                    type="button"
+                >
+                    CONTINUE →
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SCREEN 3 — SPIN WHEEL
+            ================================================== -->
+
+            <div
+                id="wheelScreen"
+                class="wheel-screen"
+            >
+
+                <div class="wheel-label">
+                    REWARD SYSTEM
+                </div>
+
+
+                <h2 class="wheel-title">
+                    SPIN THE WHEEL
+                </h2>
+
+
+                <p class="wheel-description">
+                    Your quest is complete.<br>
+                    Now discover your reward.
+                </p>
+
+
+                <!-- WHEEL -->
+
+                <div class="wheel-wrapper">
+
+
+                    <!-- POINTER -->
+
+                    <div class="wheel-pointer">
+                        ▼
+                    </div>
+
+
+                    <!-- WHEEL -->
+
+                    <div
+                        id="wheel"
+                        class="wheel"
+                    >
+
+                        <!--
+                            Wheel segments
+                            akan dibuat melalui JavaScript.
+                        -->
+
+                    </div>
+
+
+                    <!-- CENTER -->
+
+                    <div class="wheel-center">
+                        ✦
+                    </div>
+
+                </div>
+
+
+
+                <!-- SPIN BUTTON -->
+
+                <button
+                    id="spinButton"
+                    class="spin-button"
+                    type="button"
+                >
+                    SPIN
+                </button>
+
+
+
+                <!-- STATUS -->
+
+                <div
+                    id="spinStatus"
+                    class="spin-status"
+                >
+                    READY TO SPIN
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SCREEN 4 — REWARD
+            ================================================== -->
+
+            <div
+                id="rewardScreen"
+                class="reward-screen"
+            >
+
+                <div class="reward-icon">
+                    🎁
+                </div>
+
+
+                <div class="reward-label">
+                    REWARD UNLOCKED
+                </div>
+
+
+                <h2>
+                    CONGRATULATIONS
+                </h2>
+
+
+                <div
+                    id="rewardName"
+                    class="reward-name"
+                >
+                    YOUR REWARD
+                </div>
+
+
+                <p>
+                    You have successfully completed
+                    the Hidden Quest.
+                </p>
+
+
+                <div class="reward-code-box">
+
+                    <span>
+                        REWARD STATUS
+                    </span>
+
+                    <strong>
+                        UNLOCKED
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 FOOTER
+            ========================== -->
+
+            <footer class="quest-footer">
+
+                <span>
+                    SYSTEM
+                </span>
+
+                //
+
+                <strong>
+                    CLAY.EXE
+                </strong>
+
+                //
+
+                <span>
+                    ONLINE
+                </span>
+
+            </footer>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script
+        src="script.js"
+        defer
+    ></script>
+
+
+</body>
+
+</html>

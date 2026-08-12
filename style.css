@@ -1,0 +1,1707 @@
+/* =========================================================
+   HIDDEN QUEST — C L A Y
+   STYLE.CSS
+   DARK NEON CYBERPUNK + SPIN WHEEL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "Rajdhani", sans-serif;
+    color: #f5f5f7;
+    background: #040407;
+}
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+    --bg: #040407;
+    --panel: rgba(10, 10, 17, 0.9);
+
+    --red: #ff174f;
+    --red-bright: #ff3b67;
+
+    --purple: #8b00ff;
+    --purple-light: #b83cff;
+
+    --cyan: #00eaff;
+
+    --white: #f5f5f7;
+    --gray: #888894;
+    --dark-gray: #20202b;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -5;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(139, 0, 255, 0.15),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(255, 23, 79, 0.13),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(0, 234, 255, 0.025),
+            transparent 45%
+        );
+}
+
+
+/* =========================================================
+   CYBER GRID
+========================================================= */
+
+.background-grid {
+    position: fixed;
+    inset: 0;
+    z-index: -4;
+    pointer-events: none;
+    opacity: 0.18;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.035) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black 0%,
+            rgba(0,0,0,.7) 45%,
+            transparent 100%
+        );
+}
+
+
+/* =========================================================
+   SCANLINES
+========================================================= */
+
+.scanlines {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+    opacity: 0.45;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0px,
+            transparent 3px,
+            rgba(255,255,255,0.018) 4px
+        );
+}
+
+
+/* =========================================================
+   AMBIENT LIGHT
+========================================================= */
+
+.ambient {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(100px);
+    opacity: 0.08;
+    z-index: -3;
+}
+
+.ambient-purple {
+    top: -150px;
+    left: -150px;
+    background: var(--purple);
+}
+
+.ambient-red {
+    right: -150px;
+    bottom: -150px;
+    background: var(--red);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.container {
+    min-height: 100vh;
+    width: 100%;
+
+    padding: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   QUEST CARD
+========================================================= */
+
+.quest-card {
+    position: relative;
+
+    width: min(720px, 100%);
+    min-height: 560px;
+
+    padding: 45px;
+
+    background: var(--panel);
+
+    border: 1px solid rgba(255, 23, 79, 0.28);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 0 30px rgba(255, 23, 79, 0.05),
+        0 0 100px rgba(139, 0, 255, 0.04),
+        inset 0 0 50px rgba(139, 0, 255, 0.025);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   CARD GLOW
+========================================================= */
+
+.quest-card::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,23,79,.04),
+            transparent 30%,
+            transparent 70%,
+            rgba(139,0,255,.04)
+        );
+}
+
+.quest-card::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 15%;
+
+    width: 70%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--red),
+            var(--purple),
+            transparent
+        );
+
+    box-shadow:
+        0 0 12px rgba(255,23,79,.8);
+}
+
+
+/* =========================================================
+   CORNERS
+========================================================= */
+
+.corner {
+    position: absolute;
+
+    width: 42px;
+    height: 42px;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+.corner-top-left {
+    top: 0;
+    left: 0;
+
+    border-top: 2px solid var(--red);
+    border-left: 2px solid var(--red);
+
+    box-shadow:
+        -3px -3px 15px rgba(255,23,79,.2);
+}
+
+.corner-top-right {
+    top: 0;
+    right: 0;
+
+    border-top: 2px solid var(--purple);
+    border-right: 2px solid var(--purple);
+}
+
+.corner-bottom-left {
+    bottom: 0;
+    left: 0;
+
+    border-bottom: 2px solid var(--purple);
+    border-left: 2px solid var(--purple);
+}
+
+.corner-bottom-right {
+    right: 0;
+    bottom: 0;
+
+    border-bottom: 2px solid var(--red);
+    border-right: 2px solid var(--red);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.quest-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 42px;
+}
+
+.quest-label {
+    font-family: "Orbitron", sans-serif;
+
+    color: var(--red);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 7px;
+
+    text-shadow:
+        0 0 10px rgba(255,23,79,.75);
+
+    animation:
+        labelPulse 3s ease-in-out infinite;
+}
+
+@keyframes labelPulse {
+    0%, 100% {
+        opacity: .75;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.logo {
+    margin-top: 9px;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: clamp(34px, 7vw, 58px);
+    font-weight: 700;
+
+    letter-spacing: 16px;
+    margin-right: -16px;
+
+    color: var(--white);
+
+    text-shadow:
+        0 0 8px rgba(255,255,255,.25),
+        0 0 20px rgba(255,23,79,.25),
+        0 0 45px rgba(139,0,255,.15);
+}
+
+.header-line {
+    position: relative;
+
+    width: 130px;
+    height: 2px;
+
+    margin: 18px auto 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--red),
+            var(--purple),
+            transparent
+        );
+
+    box-shadow:
+        0 0 10px var(--red);
+}
+
+
+/* =========================================================
+   QUEST SCREEN
+========================================================= */
+
+.quest-screen {
+    position: relative;
+    z-index: 2;
+
+    animation:
+        questEnter .5s ease;
+}
+
+@keyframes questEnter {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-container {
+    margin-bottom: 38px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 9px;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+
+    color: var(--gray);
+}
+
+.progress-info span:last-child {
+    color: var(--red);
+
+    text-shadow:
+        0 0 8px rgba(255,23,79,.6);
+}
+
+.progress-track {
+    width: 100%;
+    height: 3px;
+
+    background: #181821;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 20%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--red)
+        );
+
+    box-shadow:
+        0 0 12px var(--red);
+
+    transition:
+        width .55s cubic-bezier(.4,0,.2,1);
+}
+
+
+/* =========================================================
+   QUESTION
+========================================================= */
+
+.question-container {
+    margin-bottom: 30px;
+}
+
+.question-number {
+    margin-bottom: 12px;
+
+    color: var(--cyan);
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 0 8px rgba(0,234,255,.6);
+}
+
+.question-text {
+    max-width: 650px;
+
+    color: var(--white);
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: clamp(21px, 4vw, 32px);
+    font-weight: 600;
+
+    line-height: 1.35;
+}
+
+
+/* =========================================================
+   ANSWERS
+========================================================= */
+
+.answers-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 11px;
+}
+
+.answer-button {
+    position: relative;
+
+    width: 100%;
+    min-height: 61px;
+
+    padding: 14px 18px;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    border: 1px solid rgba(255,255,255,.11);
+
+    outline: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.035),
+            rgba(255,255,255,.015)
+        );
+
+    color: #d8d8df;
+
+    font-family: "Rajdhani", sans-serif;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background .25s ease,
+        box-shadow .25s ease,
+        color .25s ease;
+}
+
+.answer-button::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 3px;
+    height: 100%;
+
+    background: transparent;
+
+    transition:
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+.answer-button:hover {
+    transform: translateX(6px);
+
+    color: white;
+
+    border-color:
+        rgba(255,23,79,.5);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,23,79,.10),
+            rgba(139,0,255,.035)
+        );
+
+    box-shadow:
+        0 0 18px rgba(255,23,79,.07),
+        inset 0 0 20px rgba(255,23,79,.025);
+}
+
+.answer-button:hover::before {
+    background: var(--red);
+
+    box-shadow:
+        0 0 14px var(--red);
+}
+
+.answer-button:active {
+    transform:
+        translateX(6px)
+        scale(.985);
+}
+
+.answer-key {
+    flex-shrink: 0;
+
+    width: 29px;
+    height: 29px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255,23,79,.4);
+
+    color: var(--red);
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 10px;
+
+    text-shadow:
+        0 0 7px rgba(255,23,79,.7);
+}
+
+.answer-text {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================================================
+   HINT
+========================================================= */
+
+.quest-hint {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 25px;
+
+    color: #565662;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+.hint-icon {
+    color: var(--red);
+
+    font-size: 7px;
+
+    text-shadow:
+        0 0 7px var(--red);
+}
+
+
+/* =========================================================
+   QUESTION EXIT
+========================================================= */
+
+.quest-screen.exit {
+    animation:
+        questionExit .25s ease forwards;
+}
+
+@keyframes questionExit {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(-25px);
+    }
+}
+
+
+/* =========================================================
+   COMPLETE SCREEN
+========================================================= */
+
+.complete-screen {
+    position: relative;
+
+    z-index: 2;
+
+    display: none;
+
+    text-align: center;
+
+    padding:
+        20px 0 15px;
+}
+
+.complete-screen.active {
+    display: block;
+
+    animation:
+        completeEnter .7s ease;
+}
+
+@keyframes completeEnter {
+    from {
+        opacity: 0;
+        transform:
+            scale(.96)
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+.complete-icon {
+    margin-bottom: 18px;
+
+    color: var(--red);
+
+    font-size: 54px;
+
+    text-shadow:
+        0 0 10px var(--red),
+        0 0 30px var(--red),
+        0 0 60px rgba(255,23,79,.5);
+
+    animation:
+        iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: .8;
+    }
+
+    50% {
+        transform: scale(1.08);
+        opacity: 1;
+    }
+}
+
+.complete-label {
+    margin-bottom: 12px;
+
+    color: var(--cyan);
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 0 8px rgba(0,234,255,.5);
+}
+
+.complete-screen h2 {
+    margin-bottom: 15px;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size:
+        clamp(25px, 6vw, 43px);
+
+    letter-spacing: 6px;
+
+    color: var(--white);
+}
+
+.complete-screen p {
+    color: var(--gray);
+
+    font-size: 17px;
+
+    line-height: 1.6;
+}
+
+.complete-screen strong {
+    color: var(--red);
+
+    text-shadow:
+        0 0 8px rgba(255,23,79,.6);
+}
+
+
+/* =========================================================
+   CONTINUE BUTTON
+========================================================= */
+
+.restart-button {
+    margin-top: 30px;
+
+    padding: 13px 25px;
+
+    border: 1px solid var(--red);
+
+    outline: none;
+
+    background: transparent;
+
+    color: var(--red);
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+}
+
+.restart-button:hover {
+    background: var(--red);
+
+    color: #040407;
+
+    box-shadow:
+        0 0 25px rgba(255,23,79,.45);
+}
+
+
+/* =========================================================
+   SPIN WHEEL SCREEN
+========================================================= */
+
+.wheel-screen {
+    position: relative;
+
+    z-index: 2;
+
+    display: none;
+
+    text-align: center;
+}
+
+.wheel-screen.active {
+    display: block;
+
+    animation:
+        wheelScreenEnter .7s ease;
+}
+
+@keyframes wheelScreenEnter {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   WHEEL HEADER
+========================================================= */
+
+.wheel-label {
+    margin-bottom: 9px;
+
+    color: var(--cyan);
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 0 10px rgba(0,234,255,.6);
+}
+
+.wheel-title {
+    font-family: "Orbitron", sans-serif;
+
+    font-size:
+        clamp(25px, 6vw, 40px);
+
+    letter-spacing: 5px;
+
+    margin-bottom: 12px;
+
+    text-shadow:
+        0 0 20px rgba(255,23,79,.25);
+}
+
+.wheel-description {
+    color: var(--gray);
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   WHEEL WRAPPER
+========================================================= */
+
+.wheel-wrapper {
+    position: relative;
+
+    width: min(360px, 78vw);
+    aspect-ratio: 1 / 1;
+
+    margin: 0 auto 28px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   POINTER
+========================================================= */
+
+.wheel-pointer {
+    position: absolute;
+
+    z-index: 10;
+
+    top: -13px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 0;
+    height: 0;
+
+    border-left:
+        14px solid transparent;
+
+    border-right:
+        14px solid transparent;
+
+    border-top:
+        30px solid var(--red);
+
+    filter:
+        drop-shadow(
+            0 0 7px var(--red)
+        );
+}
+
+
+/* =========================================================
+   WHEEL
+========================================================= */
+
+.wheel {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    border:
+        4px solid rgba(255,255,255,.12);
+
+background:
+    conic-gradient(
+        #ff174f 0deg 90deg,
+        #4800ff 90deg 180deg,
+        #00bcd4 180deg 270deg,
+        #8b00ff 270deg 360deg
+    );
+
+    box-shadow:
+
+        0 0 15px rgba(255,23,79,.45),
+
+        0 0 40px rgba(139,0,255,.18),
+
+        inset 0 0 25px rgba(0,0,0,.5);
+
+    transform:
+        rotate(0deg);
+
+    transition:
+        transform 5s
+        cubic-bezier(.12,.65,.05,1);
+
+    overflow: hidden;
+}
+
+
+/* WHEEL INNER RING */
+
+.wheel::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 12px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(255,255,255,.25);
+
+    box-shadow:
+        inset 0 0 15px rgba(0,0,0,.4);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   WHEEL CENTER
+========================================================= */
+
+.wheel-center {
+    position: absolute;
+
+    z-index: 8;
+
+    width: 66px;
+    height: 66px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border:
+        2px solid var(--red);
+
+    background:
+        radial-gradient(
+            circle,
+            #15151e,
+            #050509
+        );
+
+    color: var(--red);
+
+    font-size: 25px;
+
+    box-shadow:
+
+        0 0 15px rgba(255,23,79,.5),
+
+        inset 0 0 15px rgba(139,0,255,.25);
+}
+
+
+/* =========================================================
+   SPIN BUTTON
+========================================================= */
+
+.spin-button {
+    position: relative;
+
+    padding: 15px 50px;
+
+    border:
+        1px solid var(--red);
+
+    outline: none;
+
+    background:
+        rgba(255,23,79,.04);
+
+    color: var(--red);
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    cursor: pointer;
+
+    transition:
+        .25s ease;
+
+    box-shadow:
+        0 0 15px rgba(255,23,79,.08);
+}
+
+.spin-button:hover {
+    background: var(--red);
+
+    color: #040407;
+
+    box-shadow:
+        0 0 30px rgba(255,23,79,.55);
+}
+
+.spin-button:disabled {
+    opacity: .45;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   SPIN STATUS
+========================================================= */
+
+.spin-status {
+    margin-top: 15px;
+
+    color: #555562;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   REWARD SCREEN
+========================================================= */
+
+.reward-screen {
+    position: relative;
+
+    z-index: 2;
+
+    display: none;
+
+    text-align: center;
+
+    padding: 15px 0;
+}
+
+.reward-screen.active {
+    display: block;
+
+    animation:
+        rewardEnter .8s ease;
+}
+
+@keyframes rewardEnter {
+    from {
+        opacity: 0;
+
+        transform:
+            scale(.8)
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   REWARD ICON
+========================================================= */
+
+.reward-icon {
+    font-size: 65px;
+
+    margin-bottom: 18px;
+
+    filter:
+        drop-shadow(
+            0 0 15px rgba(255,23,79,.7)
+        );
+
+    animation:
+        rewardFloat 2s ease-in-out infinite;
+}
+
+@keyframes rewardFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+
+/* =========================================================
+   REWARD TEXT
+========================================================= */
+
+.reward-label {
+    color: var(--cyan);
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 10px;
+
+    text-shadow:
+        0 0 10px rgba(0,234,255,.6);
+}
+
+.reward-screen h2 {
+    font-family: "Orbitron", sans-serif;
+
+    font-size:
+        clamp(24px, 6vw, 40px);
+
+    letter-spacing: 5px;
+
+    margin-bottom: 25px;
+}
+
+.reward-name {
+    display: inline-block;
+
+    padding: 16px 28px;
+
+    margin-bottom: 22px;
+
+    border:
+        1px solid rgba(255,23,79,.55);
+
+    background:
+        rgba(255,23,79,.06);
+
+    color: var(--red);
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size:
+        clamp(18px, 5vw, 27px);
+
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 0 15px rgba(255,23,79,.6);
+
+    box-shadow:
+        0 0 25px rgba(255,23,79,.08);
+}
+
+.reward-screen p {
+    color: var(--gray);
+
+    font-size: 16px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   REWARD STATUS
+========================================================= */
+
+.reward-code-box {
+    margin:
+        25px auto 0;
+
+    max-width: 300px;
+
+    padding: 12px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    background:
+        rgba(255,255,255,.025);
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+
+    color: #555562;
+}
+
+.reward-code-box strong {
+    color: #32ff87;
+
+    text-shadow:
+        0 0 8px rgba(50,255,135,.5);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.quest-footer {
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 34px;
+
+    text-align: center;
+
+    color: #484852;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+}
+
+.quest-footer strong {
+    color: var(--red);
+
+    font-weight: 600;
+
+    text-shadow:
+        0 0 7px rgba(255,23,79,.5);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .container {
+        padding: 20px;
+    }
+
+    .quest-card {
+        padding: 38px 30px;
+        min-height: auto;
+    }
+
+    .quest-header {
+        margin-bottom: 35px;
+    }
+
+    .logo {
+        letter-spacing: 12px;
+        margin-right: -12px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .container {
+        min-height: 100svh;
+        padding: 14px;
+    }
+
+    .quest-card {
+        width: 100%;
+        padding: 30px 20px;
+    }
+
+    .corner {
+        width: 28px;
+        height: 28px;
+    }
+
+    .quest-label {
+        font-size: 9px;
+        letter-spacing: 5px;
+    }
+
+    .logo {
+        font-size:
+            clamp(30px, 11vw, 45px);
+
+        letter-spacing: 8px;
+
+        margin-right: -8px;
+    }
+
+    .progress-container {
+        margin-bottom: 30px;
+    }
+
+    .question-number {
+        font-size: 8px;
+        letter-spacing: 2px;
+    }
+
+    .question-text {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+    .answer-button {
+        min-height: 56px;
+        padding: 12px 14px;
+        font-size: 16px;
+    }
+
+    .answer-key {
+        width: 26px;
+        height: 26px;
+        font-size: 9px;
+    }
+
+    .wheel-wrapper {
+        width: min(320px, 78vw);
+    }
+
+    .wheel-center {
+        width: 58px;
+        height: 58px;
+        font-size: 21px;
+    }
+
+    .spin-button {
+        padding: 14px 42px;
+    }
+
+    .quest-footer {
+        margin-top: 27px;
+        font-size: 7px;
+        letter-spacing: 2px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREEN
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .quest-card {
+        padding: 26px 16px;
+    }
+
+    .logo {
+        font-size: 28px;
+        letter-spacing: 6px;
+        margin-right: -6px;
+    }
+
+    .question-text {
+        font-size: 18px;
+    }
+
+    .answer-button {
+        font-size: 15px;
+    }
+
+    .wheel-wrapper {
+        width: 250px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+        scroll-behavior: auto !important;
+    }
+}
+
+/* =========================================================
+   ZONK SCREEN
+========================================================= */
+
+.zonk-screen {
+    position: relative;
+
+    z-index: 10;
+
+    text-align: center;
+
+    padding: 25px 0;
+
+    animation:
+        zonkEnter .7s ease;
+}
+
+@keyframes zonkEnter {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(.8)
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+.zonk-icon {
+    font-size: 65px;
+
+    margin-bottom: 18px;
+
+    color: var(--red);
+
+    text-shadow:
+        0 0 10px var(--red),
+        0 0 30px var(--red),
+        0 0 60px rgba(255,23,79,.5);
+
+    animation:
+        zonkPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes zonkPulse {
+
+    0%, 100% {
+        transform: scale(1);
+
+        opacity: .75;
+    }
+
+    50% {
+        transform: scale(1.1);
+
+        opacity: 1;
+    }
+}
+
+.zonk-label {
+    margin-bottom: 10px;
+
+    color: var(--cyan);
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 0 10px rgba(0,234,255,.5);
+}
+
+.zonk-screen h2 {
+    margin-bottom: 15px;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size:
+        clamp(35px, 9vw, 60px);
+
+    letter-spacing: 8px;
+
+    color: var(--red);
+
+    text-shadow:
+        0 0 10px var(--red),
+        0 0 30px rgba(255,23,79,.5);
+}
+
+.zonk-screen p {
+    color: var(--gray);
+
+    font-size: 17px;
+
+    margin-bottom: 18px;
+}
+
+.zonk-chance {
+    display: inline-block;
+
+    padding: 10px 18px;
+
+    border:
+        1px solid rgba(255,23,79,.3);
+
+    background:
+        rgba(255,23,79,.04);
+
+    color: #666671;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+/* =========================================================
+   WHEEL REWARD LABELS
+========================================================= */
+
+.wheel-segment {
+    position: absolute;
+
+    z-index: 4;
+
+    left: 50%;
+    top: 50%;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    padding-top: 12%;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(var(--label-angle));
+
+    transform-origin: center center;
+
+    color: #ffffff;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: clamp(8px, 2.5vw, 13px);
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+
+    pointer-events: none;
+
+    text-shadow:
+        0 0 5px rgba(255,255,255,.9),
+        0 0 10px rgba(255,23,79,.7),
+        0 0 18px rgba(139,0,255,.5);
+}
+
+
+/* Counter rotate tulisan agar tetap horizontal */
+
+.wheel-segment span {
+    display: block;
+
+    transform:
+        rotate(calc(var(--label-angle) * -1));
+}
